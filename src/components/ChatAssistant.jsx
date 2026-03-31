@@ -9,6 +9,7 @@ export default function ChatAssistant({ resumeText }) {
   const [isTyping, setIsTyping] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const messagesEndRef = useRef(null);
+  const chatRef = useRef(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -17,6 +18,22 @@ export default function ChatAssistant({ resumeText }) {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isTyping]);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (chatRef.current && !chatRef.current.contains(event.target)) {
+        setIsExpanded(false);
+      }
+    }
+
+    if (isExpanded) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isExpanded]);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -67,7 +84,7 @@ export default function ChatAssistant({ resumeText }) {
   };
 
   return (
-    <div className={`chat-wrapper glass-panel ${isExpanded ? 'expanded' : ''}`}>
+    <div ref={chatRef} className={`chat-wrapper glass-panel ${isExpanded ? 'expanded' : ''}`}>
       <div className="chat-container">
         
         <div className="chat-header">
