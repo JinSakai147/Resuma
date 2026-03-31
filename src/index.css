@@ -1,0 +1,87 @@
+:root {
+  --primary-color: #d946ef; /* Magenta Neon */
+  --secondary-color: #0ea5e9; /* Cyan Neon */
+  --bg-color: #000000; /* Deep Abyss */
+  --panel-bg: rgba(20, 15, 30, 0.55);
+  --border-color: rgba(255, 255, 255, 0.08); /* Faint ambient light edge */
+  --text-main: #f8fafc;
+  --text-muted: #8b99b5;
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  min-height: 100vh;
+  margin: 0;
+  place-items: center;
+  /* Dark Aurora glowing background */
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(217, 70, 239, 0.18), transparent 45%),
+    radial-gradient(circle at 90% 80%, rgba(14, 165, 233, 0.2), transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(76, 29, 149, 0.15), transparent 60%);
+  background-color: var(--bg-color);
+  background-attachment: fixed;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* Glass panel utility */
+.glass-panel {
+  background: var(--panel-bg);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid var(--border-color);
+  border-top: 1px solid rgba(255, 255, 255, 0.15); /* Catch top lighting */
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-border {
+  0% { border-color: rgba(139, 92, 246, 0.3); }
+  50% { border-color: rgba(139, 92, 246, 0.8); }
+  100% { border-color: rgba(139, 92, 246, 0.3); }
+}
