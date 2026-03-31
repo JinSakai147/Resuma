@@ -277,6 +277,9 @@ header {
   z-index: 1000;
   box-shadow: -20px 0 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(217, 70, 239, 0.15);
   border-color: rgba(217, 70, 239, 0.4);
+  background: rgba(10, 10, 15, 0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
 }
 
 .chat-container {
