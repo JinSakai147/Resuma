@@ -260,6 +260,25 @@ header {
 }
 
 /* Chat Assistant */
+.chat-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  background: var(--panel-bg);
+}
+
+.chat-wrapper.expanded {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50vw;
+  min-width: 500px;
+  z-index: 1000;
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(217, 70, 239, 0.15);
+  border-color: rgba(217, 70, 239, 0.4);
+}
+
 .chat-container {
   display: flex;
   flex-direction: column;
@@ -271,11 +290,29 @@ header {
   border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
 }
 
 .chat-header h3 {
   font-size: 1.25rem;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
 }
 
 .status-dot {

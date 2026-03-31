@@ -91,10 +91,8 @@ function App() {
               )}
             </div>
             
-            <div className="right-pane chat-assistant-pane" style={{ flex: 0.45 }}>
-              <div className="glass-panel" style={{ height: '100%' }}>
-                <ChatAssistant resumeText={analysisResults?.rawText || ""} />
-              </div>
+            <div className="right-pane chat-assistant-pane" style={{ flex: 0.45, position: 'relative' }}>
+              <ChatAssistant resumeText={analysisResults?.rawText || ""} />
             </div>
           </div>
         )}

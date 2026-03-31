@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Bot, User } from 'lucide-react';
+import { Send, Bot, User, Minimize2, Maximize2 } from 'lucide-react';
 
 export default function ChatAssistant({ resumeText }) {
   const [messages, setMessages] = useState([
@@ -7,6 +7,7 @@ export default function ChatAssistant({ resumeText }) {
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -66,13 +67,22 @@ export default function ChatAssistant({ resumeText }) {
   };
 
   return (
-    <div className="right-pane glass-panel">
+    <div className={`chat-wrapper glass-panel ${isExpanded ? 'expanded' : ''}`}>
       <div className="chat-container">
         
         <div className="chat-header">
-          <Bot size={24} color="var(--primary-color)" />
-          <h3>AI Resume Coach</h3>
-          <span className="status-dot"></span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Bot size={24} color="var(--primary-color)" />
+            <h3 style={{ margin: 0, fontSize: '1.1rem' }}>AI Resume Coach</h3>
+            <span className="status-dot"></span>
+          </div>
+          <button 
+            className="icon-btn" 
+            onClick={() => setIsExpanded(!isExpanded)}
+            title={isExpanded ? "Minimize Chat" : "Expand Chat"}
+          >
+            {isExpanded ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
+          </button>
         </div>
 
         <div className="chat-messages">
@@ -106,6 +116,7 @@ export default function ChatAssistant({ resumeText }) {
               className="chat-input"
               placeholder="Ask me anything about your resume..."
               value={input}
+              onFocus={() => setIsExpanded(true)}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
             />
